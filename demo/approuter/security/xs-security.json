@@ -1,0 +1,31 @@
+{
+  "xsappname": "carapi-i560527",
+  "description": "Enabled bulletinboard for multitenants",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Display",
+      "description": "Display cars"
+    },
+    {
+      "name": "$XSAPPNAME.Update",
+      "description": "Update cars"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "View cars",
+      "scope-references": [
+        "$XSAPPNAME.Display"
+      ]
+    },
+    {
+      "name": "Advertiser",
+      "description": "Maintain cars",
+      "scope-references": [
+        "$XSAPPNAME.Update"
+      ]
+    }
+  ]
+}

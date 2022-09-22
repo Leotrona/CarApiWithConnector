@@ -1,0 +1,16 @@
+{
+  "authenticationMethod": "route",
+  "welcomeFile": "index.html",
+  "routes": [
+    {
+      "authenticationType": "xsuaa",
+      "source": "^/cars",
+      "target": "/api/v1/cars",
+      "destination": "cars",
+      "scope": [
+        "$XSAPPNAME.Display",
+        "$XSAPPNAME.Update"
+      ]
+    }
+  ]
+}

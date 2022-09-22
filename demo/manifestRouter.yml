@@ -1,0 +1,20 @@
+applications:
+  - name: approuterUsingConnector
+    routes:
+      - route: approuterConnector-i560527.cfapps.us10.hana.ondemand.com
+    path: C:\Users\I560527\IntelliJPrograms\usingConnector\CarApiWithConnector\demo\approuter
+    buildpacks:
+      - https://github.com/cloudfoundry/nodejs-buildpack.git#v1.6.49
+    memory: 128M
+    timeout: 180
+    env:
+      TENANT_HOST_PATTERN: "^(.*)approuter-i560527.cfapps.us10.hana.ondemand.com"
+      destinations: >
+        [
+          {"name":"cars", 
+           "url":"https://carapiultimate.cfapps.us10.hana.ondemand.com",
+           "forwardAuthToken": true}
+        ]
+    services:
+      - myRouter
+      - carsConService

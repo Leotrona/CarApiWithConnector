@@ -1,0 +1,24 @@
+applications:
+  - name: carsUsingConnector
+    routes:
+      - route: carapiultimate.cfapps.us10.hana.ondemand.com
+    memory: 1G
+    path: C:\Users\I560527\IntelliJPrograms\usingConnector\CarApiWithConnector\demo\target\java-archive-0.0.1-SNAPSHOT.jar
+    buildpacks:
+      - https://github.com/cloudfoundry/java-buildpack#v4.26
+    env:
+      SKIP_SSL_VALIDATION: false
+      xsuaa_connectivity_instance_name: "myRouter"
+      xsuaa_destination_instance_name: "myRouter"
+      # Use the non-blocking /dev/urandom instead of the default to generate random numbers.
+      # This may help with slow startup times, especially when using Spring Boot.
+      JAVA_OPTS: -Djava.security.egd=file:///dev/./urandom
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
+      JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+      SPRING_PROFILES_ACTIVE: cloud
+
+    services:
+      - myRouter
+      - carsConService
+      - carsDestinationService
+
